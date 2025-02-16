@@ -1,0 +1,38 @@
+spring:
+  shardingsphere:
+    rules:
+      sharding:
+        tables:
+          reg_taxpayer:
+            actual-data-nodes: ds.reg_taxpayer_000${0..3}
+            keyGenerateStrategy:
+              column: id
+              keyGeneratorName: snowflake
+            table-strategy:
+              complex:
+                shardingColumns: org_id,biz_id
+                shardingAlgorithmName: reg-complex-sharding
+          reg_taxpayer_request:
+            actual-data-nodes: ds.reg_taxpayer_request_000${0..3}
+            keyGenerateStrategy:
+              column: id
+              keyGeneratorName: snowflake
+            table-strategy:
+              complex:
+                shardingColumns: org_id,biz_id
+                shardingAlgorithmName: reg-complex-sharding
+        shardingAlgorithms:
+          reg-complex-sharding:
+            type: CLASS_BASED
+            props:
+              algorithmClassName: com.example.self.base.sharding.algorithm.RegShardingAlgorithm
+              strategy: complex
+              tableCount: 4
+              mainColum: org_id
+        keyGenerators:
+          snowflake:
+            type: SNOWFLAKE
+        auditors:
+          sharding_key_required_auditor:
+            type: DML_SHARDING_CONDITIONS
+

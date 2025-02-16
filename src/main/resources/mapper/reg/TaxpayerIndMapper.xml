@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.self.reg.mapper.TaxpayerIndMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.self.reg.entity.TaxpayerInd">
+        <id column="id" property="id" />
+        <result column="taxpayer_id" property="taxpayerId" />
+        <result column="father_name" property="fatherName" />
+        <result column="mother_name" property="motherName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="lock_version" property="lockVersion" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, taxpayer_id, father_name, mother_name, create_time, update_time, create_by, update_by, lock_version, delete_flag
+    </sql>
+
+    <select id="queryTaxpayerIndInfoByTaxpayerId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM REG_TAXPAYER_IND WHERE TAXPAYER_ID = #{taxpayerId}
+
+    </select>
+
+</mapper>

@@ -1,0 +1,7 @@
+spring:
+  xxl:
+    job:
+      enabled: true
+      adminAddresses: http://127.0.0.1:9081/xxl-job-admin/
+      appName: self-xxl-job-executor
+      accessToken: default_token

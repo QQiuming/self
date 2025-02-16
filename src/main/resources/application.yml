@@ -1,0 +1,29 @@
+server:
+  port: 9099
+spring:
+  application:
+    name: self
+  config:
+    import: classpath:config/sharding-datasource.yml, classpath:config/redisson.yml, classpath:config/sa-token.yml, classpath:config/sharding-jdbc.yml, classpath:config/job.yml
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/sharding?useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource
+  data:
+    redis:
+      host: 192.168.253.130
+      port: 6379
+      password: 123456 # ??????????????
+      database: 2 # ????????????????
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  type-aliases-package: com.example.self.entity
+
+
